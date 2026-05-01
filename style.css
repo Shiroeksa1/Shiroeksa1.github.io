@@ -1,0 +1,194 @@
+/* ==========================================================
+   GIAO DIỆN PHONG CÁCH TUMADAM MOD (LIGHT MODE) - CHERRY BLOSSOM
+   HỖ TRỢ TRANG CHÍNH & TRANG CON & MODAL CHỌN HACK
+   ========================================================== */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #f1f6fb;
+    color: #1a1a1a; 
+    font-family: 'Lexend', sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- MÀN HÌNH CHÀO --- */
+#splash-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #ffffff;
+    display: flex; justify-content: center; align-items: center;
+    text-align: center;
+    z-index: 9999;
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.splash-logo {
+    width: 150px; 
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: rainbow-glow-light 4s linear infinite;
+    margin-bottom: 20px;
+}
+
+/* --- NỘI DUNG CHÍNH --- */
+.profile-container {
+    opacity: 0; 
+    transition: opacity 1s ease;
+    width: 90%; 
+    max-width: 430px; 
+    margin: 40px auto; 
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.show-content { opacity: 1 !important; }
+
+body:not(:has(#splash-screen)) .profile-container {
+    opacity: 1 !important;
+    display: block !important;
+}
+
+.logo-wrapper { display: flex; justify-content: center; margin-bottom: 15px; }
+.main-logo {
+    width: 110px; height: 110px;
+    border-radius: 50%; object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.name { 
+    display: flex; justify-content: center; align-items: center;
+    font-size: 26px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px;
+}
+
+.verified-icon { display: flex; margin-left: 6px; }
+
+.marquee-box { width: 100%; margin: 10px 0 20px; overflow: hidden; }
+.marquee-content { display: inline-block; animation: marquee 12s linear infinite; color: #888; font-size: 0.9rem; white-space: nowrap; }
+
+/* --- NÚT MẠNG XÃ HỘI --- */
+.social-icons { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
+.social-btn {
+    width: 50px; height: 50px; background: #fff; border-radius: 15px;
+    display: flex; justify-content: center; align-items: center;
+    transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.social-btn img { width: 24px; height: 24px; }
+.social-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+
+/* --- TIÊU ĐỀ MỤC --- */
+.section-title { 
+    font-size: 13px; color: #aaa; margin: 30px 0 15px; 
+    letter-spacing: 1.5px; text-transform: uppercase; 
+}
+
+/* --- CÁC THẺ LINK GAME (Dạng Card có thể nhấn) --- */
+.link-card-game { 
+    background: #ffffff;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 15px; border-radius: 20px;
+    text-decoration: none; color: #333; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: 0.3s; cursor: pointer; margin-bottom: 12px;
+}
+
+.game-thumb { width: 50px; height: 50px; border-radius: 12px; object-fit: cover; margin-right: 15px; }
+.game-meta { display: flex; flex-direction: column; flex-grow: 1; text-align: left; margin-right: 10px; overflow: hidden; }
+.game-title { font-weight: 700; font-size: 15px; color: #1a1a1a; }
+.game-date { font-size: 11px; color: #999; }
+
+.install-btn {
+    background: #e1efff; color: #007aff;
+    padding: 8px 16px; border-radius: 15px;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    min-width: 80px; text-align: center;
+}
+
+.link-card-game:hover .install-btn { background: #007aff; color: #fff; }
+
+/* ==========================================================
+   PHẦN MỚI: MODAL BẢNG CHỌN HACK (DARK MODE THEO Ý BẠN)
+   ========================================================== */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85); z-index: 10000;
+    display: none; align-items: center; justify-content: center;
+}
+
+.modal-card {
+    background: #1a1d26; /* Màu tối trùng với thẻ game của bạn */
+    width: 90%; max-width: 380px;
+    border-radius: 25px; border: 1px solid #2d3139;
+    color: white; overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.modal-header {
+    padding: 15px 20px; border-bottom: 1px solid #2d3139;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.modal-header h3 { font-size: 16px; font-weight: 600; color: #fff; }
+.modal-close { font-size: 26px; color: #888; cursor: pointer; }
+
+.modal-body { padding: 20px; }
+
+.alert-info {
+    background: rgba(78, 124, 254, 0.1);
+    color: #4e7cfe; padding: 10px; border-radius: 12px;
+    font-size: 12px; margin-bottom: 15px; text-align: center;
+}
+
+.hack-item {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #252a36; padding: 12px 15px;
+    border-radius: 15px; margin-bottom: 10px;
+    border: 1px solid #2d3139;
+}
+
+.hack-info { display: flex; flex-direction: column; }
+.hack-name { font-size: 14px; font-weight: 500; color: #fff; }
+.hack-version { font-size: 11px; color: #888; }
+
+.btn-download {
+    background: #007aff; color: white;
+    border: none; padding: 8px 16px;
+    border-radius: 12px; font-size: 11px;
+    font-weight: 700; cursor: pointer;
+}
+
+/* --- HOA ĐÀO & FOOTER --- */
+.cherry-blossom {
+    position: fixed; top: -20px; z-index: 9998;
+    pointer-events: none; border-radius: 150% 0 150% 150%; 
+    background: #ffb7c5;
+    animation-name: blossom-fall, blossom-shake;
+    animation-iteration-count: infinite, infinite;
+    animation-timing-function: linear, ease-in-out;
+}
+
+.footer { width: 100%; margin-top: 40px; padding-bottom: 40px; text-align: center; clear: both; }
+.footer p { font-size: 0.8rem; color: #bbb; display: inline-block; }
+
+/* --- ANIMATIONS --- */
+@keyframes blossom-fall {
+    0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(400deg); opacity: 0; }
+}
+@keyframes blossom-shake {
+    0%, 100% { margin-left: 0; }
+    50% { margin-left: 50px; }
+}
+@keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+@keyframes rainbow-glow-light {
+    0% { border-color: #ffb7c5; box-shadow: 0 0 15px rgba(255,183,197,0.4); }
+    100% { border-color: #ffb7c5; box-shadow: 0 0 15px rgba(255,183,197,0.4); }
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
